@@ -10,5 +10,5 @@ import { HeaderComponent } from "./components/header/header.component";
     imports: [RouterOutlet, HeaderComponent]
 })
 export class AppComponent {
-  title = 'TMDT';
+  title = 'Sea Fashion';
 }

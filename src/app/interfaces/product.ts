@@ -12,13 +12,16 @@ export interface IRating {
     soSao:number;
 }
  export interface IProduct {
+    idHangHoa:number;
     mauSac:string;
     soLuong:number;
     size:string;
-    hinhAnh:string;
     tenHangHoa:string;
     gia:number;
     moTa:string;
+    hinhAnh: {
+        url:string;
+    }
  }
 export interface IProducts {
    HinhAnhs: IImage[];

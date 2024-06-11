@@ -1,0 +1,41 @@
+<div class="container-lg mt-[4rem]">
+  <div class="grid gap-10 md:grid-cols-2 sm:grid-cols-1">
+    <!-- Skeleton for image -->
+    <ng-container *ngIf="isLoading; else productContent">
+      <div class="skeleton-wrapper">
+        <p-skeleton width="100%" height="400px"></p-skeleton>
+        <div>
+          <p-skeleton width="60%" height="30px"></p-skeleton>
+          <p-skeleton width="100%" height="20px" [ngStyle]="{'margin-top': '10px'}"></p-skeleton>
+          <p-skeleton width="100%" height="20px" [ngStyle]="{'margin-top': '10px'}"></p-skeleton>
+          <!-- <p-skeleton width="40%" height="20px" [ngStyle]="{'margin-top': '10px'}"></p-skeleton>
+          <p-skeleton width="50%" height="20px" [ngStyle]="{'margin-top': '10px'}"></p-skeleton> -->
+          <div class="quantity-controls" [ngStyle]="{'margin-top': '10px'}">
+            <p-skeleton width="30px" height="30px"></p-skeleton>
+            <!-- <p-skeleton width="50px" height="30px"></p-skeleton>
+            <p-skeleton width="30px" height="30px"></p-skeleton> -->
+          </div>
+          <p-skeleton width="100px" height="40px" [ngStyle]="{'margin-top': '20px'}"></p-skeleton>
+        </div>
+      </div>
+    </ng-container>
+
+    <!-- Actual product content -->
+    <ng-template #productContent>
+      <img [src]="itemProduct?.hinhAnh" alt="anh">
+      <div>
+        <p class="font-bold text-2xl">{{itemProduct?.tenHangHoa}}</p>
+        <p>{{itemProduct?.moTa}}</p>
+        <p>Giá {{itemProduct?.gia | number : "1.0-3"}} VNĐ</p>
+        <p>Kích thước {{itemProduct?.size}}</p>
+        <p>Màu {{itemProduct?.mauSac}}</p>
+        <div class="quantity-controls">
+          <button type="button" class="btn btn-light" (click)="decreaseSoLuong()">-</button>
+          <input  [ngModel]="soLuong" min="1" class="quantity-input" disabled >
+          <button type="button" class="btn btn-light" (click)="increaseSoLuong()">+</button>
+        </div>
+        <button type="button" class="btn btn-primary mt-4">Mua ngay</button>
+      </div>
+    </ng-template>
+  </div>
+</div>

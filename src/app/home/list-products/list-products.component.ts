@@ -6,11 +6,12 @@ import {MatCardModule} from '@angular/material/card';
 import { TooltipModule } from 'primeng/tooltip';
 import { InputTextModule } from 'primeng/inputtext';
 import { AnimateOnScrollModule } from 'primeng/animateonscroll';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-list-products',
   standalone: true,
-  imports: [CommonModule,MatCardModule,TooltipModule,InputTextModule,AnimateOnScrollModule],
+  imports: [RouterLink,CommonModule,MatCardModule,TooltipModule,InputTextModule,AnimateOnScrollModule],
   templateUrl: './list-products.component.html',
   styleUrl: './list-products.component.scss'
 })
@@ -40,5 +41,19 @@ export class ListProductsComponent implements OnInit {
         console.error("Error fetching products: ", err);
       }
     });
+  }
+
+  getImageUrl(itemProduct:IProduct):string{
+    if(itemProduct && itemProduct.hinhAnh && itemProduct.hinhAnh.url ){
+      let imgUrl = itemProduct.hinhAnh.url.trim();
+      if(imgUrl.startsWith('http') || imgUrl.startsWith('/')){
+        return imgUrl;
+      } else {
+        return 'https://localhost:7294/' + imgUrl;
+      }
+    }
+    else {
+      return 'path/to/placeholder-image.webp';
+    }
   }
 }

@@ -1,0 +1,29 @@
+<!-- <div class="container-xxl">
+  <h1>List Product</h1> -->
+  <!-- Grid Product -->
+  <!-- <div class="grid lg:grid-cols-4 lg:gap-4 md:grid-cols-2 md:gap-2 sm:grid-cols-1 sm:gap-0">
+    <div *ngFor="let product of products" pAnimateOnScroll enterClass="fadein" leaveClass="fadeout">
+      <a href="" class="text-slate-900 no-underline product-container" pTooltip="{{ product.tenHangHoa }}">
+        <img [src]="product.hinhAnh" alt="" />
+        <p class="py-1 product-name">{{ product.tenHangHoa }}</p>
+        <p>{{ product.gia | number : "1.0-3" }} VNĐ</p>
+        <p class="absolute  bottom-14 left-[100px]; product-buy-text">Mua ngay</p>
+        <p></p>
+      </a>
+    </div>
+  </div>
+</div> -->
+<div class="container-xxl">
+  <h1>List Product</h1>
+  <!-- Grid Product -->
+  <div class="grid lg:grid-cols-4 lg:gap-4 md:grid-cols-2 md:gap-2 sm:grid-cols-1 sm:gap-0">
+    <div *ngFor="let product of products" pAnimateOnScroll enterClass="fadein" leaveClass="fadeout">
+      <a href="" class="text-slate-900 no-underline product-container" pTooltip="{{ product.tenHangHoa }}">
+        <img [src]="product.hinhAnh" alt="" />
+        <p class="py-1 product-name">{{ product.tenHangHoa }}</p>
+        <p>{{ product.gia | number : "1.0-3" }} VNĐ</p>
+        <p class="absolute bottom-14 left-[110px] product-buy-text bg-[#48CAB2] p-2 text-cyan-100">Mua ngay</p>
+      </a>
+    </div>
+  </div>
+</div>

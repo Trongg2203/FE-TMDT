@@ -1,4 +1,4 @@
-<ngb-carousel *ngIf="images.length" class="mt-5">
+<ngb-carousel *ngIf="images.length" class="my-5">
     <ng-template ngbSlide *ngFor="let img of images; let i = index" [id]="'slide-' + i">
       <img [src]="img" alt="Random slide">
       <div class="carousel-caption">

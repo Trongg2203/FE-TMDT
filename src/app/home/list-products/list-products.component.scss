@@ -1,0 +1,77 @@
+img {
+    height: 300px;
+    width: 360px;
+}
+
+.product-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  /* Ensure the container of the text has a defined width */
+  .container-xl .grid .product-name {
+    // max-width: 200px; /* Adjust to your requirement */
+    display: inline-block;
+  }
+  /* Thêm hover effect và định dạng cho văn bản "Mua ngay" */
+.product-container {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .product-buy-text {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .product-container:hover .product-buy-text {
+    opacity: 1;
+  }
+  
+  /* Responsive */
+  // @media screen and (max-width: 640px) {
+  //   .lg\:grid-cols-4 {
+  //     grid-template-columns: repeat(2, minmax(0, 1fr));
+  //   }
+  // }
+
+  // animation scrolling
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+  
+  .fadein {
+    animation: fadeIn .8s forwards;
+  }
+  
+  .fadeout {
+    animation: fadeOut .8s forwards;
+  }
+  
+  .product-container {
+    position: relative;
+  }
+  
+  .product-buy-text {
+    display: none;
+  }
+  
+  .product-container:hover .product-buy-text {
+    display: block;
+  }
+  

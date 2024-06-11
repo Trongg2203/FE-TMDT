@@ -30,14 +30,16 @@ export class ProductDetailsComponent implements OnInit {
 
   getProductById(id: number) {
     this.ProductServices.getProductById(id).subscribe((data) => {
+      console.log("aa ", data )
       this.itemProduct = data;
       this.isLoading = false;
     });
   }
 
   getImageUrl(itemProduct:IProduct):string{
-    if(itemProduct && itemProduct.hinhAnh && itemProduct.hinhAnh.url ){
-      let imgUrl = itemProduct.hinhAnh.url.trim();
+    if(itemProduct && itemProduct.hinhAnh && itemProduct.hinhAnh.length > 0) {
+      console.log(itemProduct.hinhAnh)
+      let imgUrl = itemProduct.hinhAnh.trim();
       if(imgUrl.startsWith('http') || imgUrl.startsWith('/')){
         return imgUrl;
       } else {

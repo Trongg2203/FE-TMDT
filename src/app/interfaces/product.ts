@@ -19,9 +19,7 @@ export interface IRating {
     tenHangHoa:string;
     gia:number;
     moTa:string;
-    hinhAnh: {
-        url:string;
-    }
+    hinhAnh:string;
  }
 export interface IProducts {
    HinhAnhs: IImage[];

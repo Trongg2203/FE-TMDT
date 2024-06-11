@@ -22,7 +22,7 @@
 
     <!-- Actual product content -->
     <ng-template #productContent>
-      <img [src]="itemProduct?.hinhAnh" alt="anh">
+      <img [src]=" getImageUrl(itemProduct)" alt="anh">
       <div>
         <p class="font-bold text-2xl">{{itemProduct?.tenHangHoa}}</p>
         <p>{{itemProduct?.moTa}}</p>

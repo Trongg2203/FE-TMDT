@@ -44,8 +44,8 @@ export class ListProductsComponent implements OnInit {
   }
 
   getImageUrl(itemProduct:IProduct):string{
-    if(itemProduct && itemProduct.hinhAnh && itemProduct.hinhAnh.url ){
-      let imgUrl = itemProduct.hinhAnh.url.trim();
+    if(itemProduct && itemProduct.hinhAnh && itemProduct.hinhAnh ){
+      let imgUrl = itemProduct.hinhAnh.trim();
       if(imgUrl.startsWith('http') || imgUrl.startsWith('/')){
         return imgUrl;
       } else {

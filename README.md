@@ -33,3 +33,6 @@ password: Pa$$w0rd
 ## Account User 
 email: test@example.com
 password: Pa$$w0rd
+
+## npm jwt-decode
+ npm i jwt-decode

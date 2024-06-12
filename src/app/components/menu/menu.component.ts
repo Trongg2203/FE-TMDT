@@ -3,12 +3,13 @@ import { Component, inject, TemplateRef } from '@angular/core';
 import { NgbDatepickerModule, NgbOffcanvas, OffcanvasDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import {MatIconModule} from '@angular/material/icon';
 import { ItemmenuComponent } from "./itemmenu/itemmenu.component";
+import { RouterLink } from '@angular/router';
 @Component({
     selector: 'app-menu',
     standalone: true,
     templateUrl: './menu.component.html',
     styleUrl: './menu.component.scss',
-    imports: [NgbDatepickerModule, MatIconModule, ItemmenuComponent]
+    imports: [NgbDatepickerModule, MatIconModule, ItemmenuComponent,RouterLink]
 })
 export class MenuComponent {
   private offcanvasService = inject(NgbOffcanvas);

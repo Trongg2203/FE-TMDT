@@ -35,7 +35,7 @@ export class ListProductsComponent implements OnInit {
     this.listProduct.getAllProducts().subscribe({
       next: (data) => {
         this.products = data;
-        console.log(">>>k ", this.products);
+        // console.log(">>>k ", this.products);
       },
       error: (err) => {
         console.error("Error fetching products: ", err);

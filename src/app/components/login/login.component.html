@@ -1,0 +1,38 @@
+<div class="flex items-center justify-around my-[7rem]">
+  <div class="flex flex-col justify-center items-center">
+    <h1>ĐĂNG NHẬP</h1>
+    <form [formGroup]="form" (ngSubmit)="login()">
+        <!-- email -->
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">
+                    <mat-icon>person</mat-icon>
+                </span>
+            </div>
+            <input class="form-control" type="text" name="username"
+                formControlName= 'email'
+                placeholder="Tên đăng nhập">
+        </div>
+        <!-- password -->
+        <div class="input-group mb-4">
+            <div class="input-group-prepend">
+                <span class="input-group-text">
+                    <mat-icon>lock</mat-icon>
+                </span>
+            </div>
+            <input class="form-control" type="password" name="password"
+                formControlName = 'password'
+                placeholder="Mật khẩu">
+        </div>
+       <div>
+           <button class=" bg-[#48CAB2] text-gray-100 py-2 w-full border-1 hover:text-[#48CAB2] hover:bg-white duration-200" type="submit" name="btnDangNhap" >Đăng nhập</button>
+       </div>
+       <div class="flex flex-col items-center justify-center my-3">
+        <button class="  hover:text-[#48CAB2] duration-200" type="submit" name="btnQuenmatkhau" >Quên mật khẩu</button>
+        <div class="my-4">
+            <p>Chưa có tài khoản, đăng ký <a href="" class="text-slate-900 hover:text-[#48CAB2]">tại đây</a></p>
+        </div>
+       </div>
+    </form>
+  </div>
+</div>

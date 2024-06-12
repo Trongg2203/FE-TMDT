@@ -24,11 +24,11 @@
     <ng-template #productContent>
       <img [src]=" getImageUrl(itemProduct)" alt="anh">
       <div>
-        <p class="font-bold text-2xl">{{itemProduct?.tenHangHoa}}</p>
-        <p>{{itemProduct?.moTa}}</p>
-        <p>Giá {{itemProduct?.gia | number : "1.0-3"}} VNĐ</p>
-        <p>Kích thước {{itemProduct?.size}}</p>
-        <p>Màu {{itemProduct?.mauSac}}</p>
+        <p class="font-bold text-2xl">{{itemProduct.tenHangHoa}}</p>
+        <p>{{itemProduct.moTa}}</p>
+        <p>Giá {{itemProduct.gia | number : "1.0-3"}} VNĐ</p>
+        <p>Kích thước {{itemProduct.size}}</p>
+        <p>Màu {{itemProduct.mauSac}}</p>
         <div class="quantity-controls">
           <button type="button" class="btn btn-light" (click)="decreaseSoLuong()">-</button>
           <input  [ngModel]="soLuong" min="1" class="quantity-input" disabled >

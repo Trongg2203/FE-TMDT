@@ -4,15 +4,18 @@ import { NgbDatepickerModule, NgbOffcanvas, OffcanvasDismissReasons } from '@ng-
 import {MatIconModule} from '@angular/material/icon';
 import { ItemmenuComponent } from "./itemmenu/itemmenu.component";
 import { RouterLink } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { AuthService } from '../../Services/auth.service';
 @Component({
     selector: 'app-menu',
     standalone: true,
     templateUrl: './menu.component.html',
     styleUrl: './menu.component.scss',
-    imports: [NgbDatepickerModule, MatIconModule, ItemmenuComponent,RouterLink]
+    imports: [NgbDatepickerModule, MatIconModule, ItemmenuComponent,RouterLink,CommonModule]
 })
 export class MenuComponent {
   private offcanvasService = inject(NgbOffcanvas);
+  private authService = inject(AuthService)
 	closeResult = '';
   open(content: TemplateRef<any>) {
 		this.offcanvasService.open(content, { ariaLabelledBy: 'offcanvas-basic-title' }).result.then(
@@ -35,4 +38,8 @@ export class MenuComponent {
 				return `with: ${reason}`;
 		}
 	}
+
+	get isLoggedIn$() {
+        return this.authService.isLoggedIn$;
+    }
 }

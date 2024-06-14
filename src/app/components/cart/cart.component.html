@@ -1,0 +1,59 @@
+<div class="container-xl my-[3rem]">
+  <p-table [value]="cartItems" [tableStyle]="{ 'min-width': '60rem' }">
+    <ng-template pTemplate="caption">
+      <div class="flex align-items-center justify-content-between">
+        Giỏ hàng
+        <p-button icon="pi pi-refresh"></p-button>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th>STT</th>
+        <th>Ảnh đại diện</th>
+        <th>Tên sản phẩm</th>
+        <th>Số lượng</th>
+        <th>Đơn giá</th>
+        <th>Thành tiền</th>
+        <th>Xóa</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-item let-i="rowIndex">
+      <tr>
+        <td>{{ i + 1 }}</td>
+        <td style="width: 10%">
+          <img [src]="getImageUrl(item)" width="100%" />
+        </td>
+        <td>{{ item?.tenHangHoa }}</td>
+        <td class="text-center">{{ item.soLuong }}</td>
+        <td class="text-center">{{ item.gia | number : "1.0-3" }} VNĐ</td>
+        <td class="text-right">
+          {{ item.soLuong * item.gia | number : "1.0-3" }} VNĐ
+        </td>
+        <td>
+          <p-button
+            icon="pi pi-trash"
+            (onClick)="removeItem(i)"
+            styleClass="p-button-danger"
+             class="text-black hover:text-[#48CAB2]"
+          >X</p-button>
+        </td>
+      </tr>
+      
+    </ng-template>
+    <ng-template pTemplate="summary">
+      <div class="flex align-items-center justify-content-between">
+        Tổng cộng có {{ cartItems ? cartItems.length : 0 }} sản phẩm.
+        <span class="font-bold">Tổng thành tiền: {{ totalAmount | number : "1.0-3" }} VNĐ</span>
+      </div>
+    </ng-template>
+  </p-table>
+
+  <div class="mt-3 flex justify-end">
+    <button [routerLink]="['/']" class=" mr-2 border border-slate-100 p-3 bg-[#F7F7F7] hover:border-slate-500 hover:bg-white duration-200">
+      <i class="pi pi-arrow-left"></i>  Tiếp tục mua hàng
+    </button>
+    <button class="border p-3 text-white bg-[#48CAB2] hover:text-[#21413b]">
+       Tiến hành thanh toán
+    </button>
+  </div>
+</div>

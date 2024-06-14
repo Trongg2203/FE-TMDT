@@ -34,7 +34,7 @@
           <input  [ngModel]="soLuong" min="1" class="quantity-input" disabled >
           <button type="button" class="btn btn-light" (click)="increaseSoLuong()">+</button>
         </div>
-        <button type="button" class="btn btn-primary mt-4">Mua ngay</button>
+        <button type="button" class="btn btn-primary mt-4" (click)="addToCart()" [routerLink]="['/cart']">Mua ngay</button>
       </div>
     </ng-template>
   </div>

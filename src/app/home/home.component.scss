@@ -1,0 +1,23 @@
+/* Kiểu chung */
+.custom-scrolltop {
+    background-color: #48CAB2 !important; /* Sử dụng !important để đảm bảo áp dụng */
+    color: #fff !important; /* Sử dụng !important để đảm bảo áp dụng */
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Kiểu khi hover */
+  .custom-scrolltop:hover {
+    background-color: #3ba594 !important; /* Sử dụng !important để đảm bảo áp dụng */
+  }
+  

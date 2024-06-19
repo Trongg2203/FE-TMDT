@@ -18,7 +18,7 @@
   <!-- Grid Product -->
   <div class="my-[3rem] grid lg:grid-cols-4 lg:gap-4 md:grid-cols-2 md:gap-2 sm:grid-cols-1 sm:gap-0">
     <div *ngFor="let product of products" pAnimateOnScroll enterClass="fadein" leaveClass="fadeout">
-        <a [routerLink]="['/product-details', product.idHangHoa]" class="text-slate-900 no-underline product-container" pTooltip="{{ product.tenHangHoa }}">
+        <a [routerLink]="['/Cate-product/product-details', product.idHangHoa]" class="text-slate-900 no-underline product-container" pTooltip="{{ product.tenHangHoa }}">
         <img [src]="getImageUrl(product)" alt="" />
         <p class="py-1 product-name">{{ product.tenHangHoa }}</p>
         <p>{{ product.gia | number : "1.0-3" }} VNĐ</p>

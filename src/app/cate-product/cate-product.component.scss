@@ -1,0 +1,10 @@
+img {
+    height: 300px;
+    width: 360px;
+}
+// tao ... 
+.product-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }

@@ -17,7 +17,7 @@
         </div>
         <div class=" flex">
             <a [routerLink]="['cart']" class="cart">
-                <mat-icon matBadge="15" class="text-black md:mr-6 sm:mr-4">shopping_cart</mat-icon>
+                <mat-icon matBadge="{{totalQuantity}}" class="text-black md:mr-6 sm:mr-4">shopping_cart</mat-icon>
 
             </a>
             <mat-icon class="hidden md-block">search</mat-icon>

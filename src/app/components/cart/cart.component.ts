@@ -22,14 +22,20 @@ import { MatIconModule } from '@angular/material/icon';
 export class CartComponent {
   cartItems!: ICart[];
   totalAmount: number = 0;
+  // cap nhat sl va gtr khi thay doi de thong bao cho cac component lien quan 
+  totalQuantity: number = 0;
   constructor(private carService: CartService, private toastr: ToastrService) {}
 
   ngOnInit() {
-    this.carService.getItemCart().subscribe((data=> {
+    this.carService.getItemCart().subscribe(data => {
       this.cartItems = data;
       this.calculateTotalAmount();
       this.saveCart();
-    }));
+    });
+
+    this.carService.totalQuantity$.subscribe(totalQuantity => {
+      this.totalQuantity = totalQuantity;
+    });
   }
 
 
@@ -56,6 +62,7 @@ export class CartComponent {
     this.saveCart();
   }
 
+  //tinh thanh tiền cho moi sp = sl * gia
   calculateTotalAmount() {
     this.totalAmount = this.cartItems.reduce(
       (total, item) => total + item.soLuong * item.gia,
@@ -64,19 +71,8 @@ export class CartComponent {
   }
 
   saveCart() {
-    const CartItemData = JSON.stringify({cartItems: this.cartItems});
-    localStorage.setItem('check Out data ', CartItemData);
-    console.log("Saved ",CartItemData)
+    this.carService.saveCartToLocalStorage();
   }
 
-  // getSeverity(status: string) {
-  //   switch (status) {
-  //     case 'INSTOCK':
-  //       return 'success';
-  //     case 'LOWSTOCK':
-  //       return 'warning';
-  //     case 'OUTOFSTOCK':
-  //       return 'danger';
-  //   }
-  // }
+  
 }

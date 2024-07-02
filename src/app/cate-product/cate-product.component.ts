@@ -37,7 +37,6 @@ export class CateProductComponent implements OnInit {
   getProductByIdCate(id:number) {
     this.CateProductService.getProductByCategories(id).subscribe(response => {
       this.products = response
-      console.log(">>> kkk" , response)
       this.isLoading = false;
     })
   }

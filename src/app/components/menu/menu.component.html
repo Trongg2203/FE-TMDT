@@ -1,63 +1,41 @@
 <ng-template #content let-offcanvas>
 	<div class="offcanvas-header">
-		<div class="mx-auto my-7">
-            <a href="">
-                <img src="../../../assets/logo.webp" alt="logo">
-            </a>
-        </div>
-		<button type="button" class="btn-close" aria-label="Close" (click)="offcanvas.dismiss('Cross click')"></button>
+	  <div class="mx-auto my-7">
+		<a href="">
+		  <img src="../../../assets/logo.webp" alt="logo">
+		</a>
+	  </div>
+	  <button type="button" class="btn-close" aria-label="Close" (click)="offcanvas.dismiss('Cross click')"></button>
 	</div>
-    <div class="mx-auto">
-        <div class="flex items-center justify-center gap-2">
-			<a *ngIf="isLoggedIn$ | async" href="" class="text-[#8F8D8A] hover:text-[#48CAB2]">Đăng xuất</a>
-			<a *ngIf="!(isLoggedIn$ | async)" [routerLink]="['/login']" class="text-[#8F8D8A] hover:text-[#48CAB2]">Đăng ký</a>
-			<span class="border-1 border-gray-900 w-[1px] h-4"></span>
-			<a *ngIf="isLoggedIn$ | async; else notLoggedIn" [routerLink]="['/account']" class="text-[#8F8D8A] hover:text-[#48CAB2]">Tài khoản</a>
-			<ng-template #notLoggedIn>
-				<a [routerLink]="['/login']" class="text-[#8F8D8A] hover:text-[#48CAB2]">Đăng nhập</a>
-			</ng-template>
+	<div class="mx-auto">
+		<div class="flex items-center justify-center gap-2">
+		  <a *ngIf="isLoggedIn$ | async" (click)="logout()" class="text-[#8F8D8A] hover:text-[#48CAB2] cursor-pointer">Đăng xuất</a>
+		  <a *ngIf="!(isLoggedIn$ | async)" [routerLink]="['/login']" class="text-[#8F8D8A] hover:text-[#48CAB2]">Đăng ký</a>
+		  <span class="border-1 border-gray-900 w-[1px] h-4"></span>
+		  <a *ngIf="isLoggedIn$ | async; else notLoggedIn" [routerLink]="['/account']" class="text-[#8F8D8A] hover:text-[#48CAB2]">Tài khoản</a>
+		  <ng-template #notLoggedIn>
+			<a [routerLink]="['/login']" class="text-[#8F8D8A] hover:text-[#48CAB2]">Đăng nhập</a>
+		  </ng-template>
 		</div>
-    </div>
+	  </div>
 	<div class="flex flex-col items-center justify-between overflow-y-auto">
-		<a href="" class="my-8 text-slate-900 hover:text-[#8F8D8A] ">TRANG CHỦ</a>
-		<span class="border-1 border-gray-200 h-[1px] w-3/4"></span>
-		<a href=""class="my-8 text-slate-900 hover:text-[#8F8D8A]">GIỚI THIỆU</a>
-		<span class="border-1 border-gray-200 h-[1px] w-3/4"></span>
-		<app-itemmenu class="my-8"></app-itemmenu>
-		<span class="border-1 border-gray-200 h-[1px] w-3/4"></span>
-		<a href=""class="my-8 text-slate-900 hover:text-[#8F8D8A]">TIN TỨC</a>
-		<span class="border-1 border-gray-200 h-[1px] w-3/4"></span>
-		<a href=""class="my-8 text-slate-900 hover:text-[#8F8D8A]">LIÊN HỆ</a>
-		<span class="border-1 border-gray-200 h-[1px] w-3/4"></span>
+	  <a href="" class="my-8 text-slate-900 hover:text-[#8F8D8A]">TRANG CHỦ</a>
+	  <span class="border-1 border-gray-200 h-[1px] w-3/4"></span>
+	  <a href="" class="my-8 text-slate-900 hover:text-[#8F8D8A]">GIỚI THIỆU</a>
+	  <span class="border-1 border-gray-200 h-[1px] w-3/4"></span>
+	  <app-itemmenu class="my-8"></app-itemmenu>
+	  <span class="border-1 border-gray-200 h-[1px] w-3/4"></span>
+	  <a href="" class="my-8 text-slate-900 hover:text-[#8F8D8A]">TIN TỨC</a>
+	  <span class="border-1 border-gray-200 h-[1px] w-3/4"></span>
+	  <a href="" class="my-8 text-slate-900 hover:text-[#8F8D8A]">LIÊN HỆ</a>
+	  <span class="border-1 border-gray-200 h-[1px] w-3/4"></span>
 	</div>
-	<!-- <div class="offcanvas-body">
-		<form>
-			<div class="mb-3">
-				<label for="dateOfBirth">Date of birth</label>
-				<div class="input-group">
-					<input
-						id="dateOfBirth"
-						class="form-control"
-						placeholder="yyyy-mm-dd"
-						name="dp"
-						ngbDatepicker
-						#dp="ngbDatepicker"
-					/>
-					<button class="btn btn-outline-secondary bi bi-calendar3" (click)="dp.toggle()" type="button"></button>
-				</div>
-			</div>
-		</form>
-		<div class="text-end">
-			<button type="button" class="btn btn-outline-dark" (click)="offcanvas.close('Save click')">Save</button>
-		</div>
-	</div> -->
-</ng-template>
-
-<div class="flex items-center">
-
-    <button class="custom-button btn-lg shadow-md" (click)="open(content)">
-        <mat-icon>menu</mat-icon>
-        
-      </button>
-      <span class="py-[12px] px-4 shadow-md cursor-pointer uppercase font-semibold" (click)="open(content)">Menu</span>
-</div>
+  </ng-template>
+  
+  <div class="flex items-center">
+	<button class="custom-button btn-lg shadow-md" (click)="open(content)">
+	  <mat-icon>menu</mat-icon>
+	</button>
+	<span class="py-[12px] px-4 shadow-md cursor-pointer uppercase font-semibold" (click)="open(content)">Menu</span>
+  </div>
+  

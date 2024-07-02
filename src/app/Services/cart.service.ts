@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { ICart } from '../interfaces/cart';
+import { ICart, ProductCart } from '../interfaces/cart';
 
 @Injectable({
   providedIn: 'root',
@@ -9,9 +9,10 @@ export class CartService {
   // theo doi cap nhat gtri trong cart
   private cartItems: ICart[] = [];
   private CartItemSubject = new BehaviorSubject<ICart[]>([]);
-  // cap nhat gtri cua cart de thong bao ra matBadge 
+  // cap nhat gtri cua cart de thong bao ra matBadge
   private totalQuantitySubject = new BehaviorSubject<number>(0);
   totalQuantity$ = this.totalQuantitySubject.asObservable();
+
 
   constructor() {
     if (this.isLocalStorageAvailable()) {
@@ -88,7 +89,10 @@ export class CartService {
 
   // tinh tong so luong sp trong cart de tao thong báo
   calculateTotalQuantity() {
-    const totalQuantity = this.cartItems.reduce((total, item) => total + item.soLuong, 0);
+    const totalQuantity = this.cartItems.reduce(
+      (total, item) => total + item.soLuong,
+      0
+    );
     this.totalQuantitySubject.next(totalQuantity);
   }
 
@@ -97,4 +101,28 @@ export class CartService {
       localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
     }
   }
+  
+  clearCart(){
+    this.cartItems = [];
+    localStorage.removeItem('cartItems');
+    this.CartItemSubject.next(this.cartItems);
+    this.calculateTotalQuantity();
+  }
+
+  getCartItems = (): ProductCart[] => {
+    const cartItemsString = localStorage.getItem('cartItems');
+    if (cartItemsString !== null) {
+      return JSON.parse(cartItemsString) as ProductCart[];
+    } else {
+      return [];
+    }
+  }
+
+  remmoveCartItem = (id: number) => {
+    const cartItemsKey = 'cartItems'; // Assuming 'cartItems' is the key for localStorage
+    const products: ICart[] = JSON.parse(localStorage.getItem(cartItemsKey)!) || [];
+    const updatedProducts = products.filter((p: ICart) => p.idHangHoa !== id);
+    localStorage.setItem(cartItemsKey, JSON.stringify(updatedProducts));
+  };
+  
 }

@@ -15,13 +15,14 @@ import { CommonModule } from '@angular/common';
 import { ICart, ProductCart } from '../../interfaces/cart';
 import { CartService } from '../../Services/cart.service';
 import { CheckoutService } from '../../Services/checkout.service';
-import { Subscription, forkJoin } from 'rxjs';
+import { Subscription, forkJoin, timeout } from 'rxjs';
 import { AuthService } from '../../Services/auth.service';
 import { UserService } from '../../Services/user.service';
 import { IUserDetail } from '../../interfaces/user';
 import { IOrderDetails, IPostHoaDonXuat } from '../../interfaces/checkout';
 import { OrderDetailRequest } from '../../interfaces/checkout-response';
 import { IOrderDetailRequest } from '../../interfaces/orderDetail-request';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-checkout',
@@ -46,6 +47,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   orderService = inject(CheckoutService);
   fb = inject(FormBuilder);
   router = inject(Router);
+  toastr = inject(ToastrService);
   items!: Array<ProductCart>;
   UserDetail$ = this.authService.getDetail();
   addBillForm!: FormGroup;
@@ -68,23 +70,24 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       user => {
         if (user) {
           this.idNg = user.id;
-          console.log("User Id : ", this.idNg);
           this.idHd = this.unique(30);
-          console.log("Id HD: ", this.idHd);
           this.initializeForm();
+          this.items = this.productService.getCartItems();
+          this.calculateTotalAmount();
         } else {
-          console.log("User not authenticated");
           this.router.navigate(['/login']);
         }
       },
       error => {
-        console.error("Error fetching user details:", error);
+        this.toastr.error('vui lòng đăng nhập để tiếp tục', 'Lỗi', {
+          timeOut: 2000,
+        });
         if (error.status === 401) {
           this.router.navigate(['/login']);
         }
       }
     );
-    // this.calculateTotalAmount();
+     
   }
 
   ngOnDestroy(): void {
@@ -110,8 +113,6 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       idUser: [this.idNg, [Validators.required]],
     });
     this.items = this.productService.getCartItems();
-    console.log('kkkk' ,this.items)
-    console.log("Form value:", this.addBillForm.value);
   }
 
   addOrderDetail() {
@@ -129,7 +130,6 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       this.orderService.addBillinfor(this.sanpham).subscribe(
         (response: any) => {
           this.productService.remmoveCartItem(this.items[i].IdHangHoa);
-          console.log(response);
         },
         (error: any) => {
           console.log(error);
@@ -141,28 +141,31 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   }
   
   isOrder() {
-    console.log('ẻtyeu',this.addBillForm.value);
 
     this.orderService.addbill(this.addBillForm.value).subscribe({
       next: Response=>{
         this.addOrderDetail();
-        alert("them bill thanh cong "+Response);
+        this.toastr.success('Đặt hàng thành công', 'Thành công', {
+          timeOut: 2000,
+        });
         this.router.navigate(['/']);
       },
       error: error =>{
         alert("them bill that bai "+error);
-        console.log("them bill that bai "+error)
+        this.toastr.error('Đặt hàng thất bại', 'Thất bại', {
+          timeOut: 2000,
+        })
         this.router.navigate(['cart']);
       }
     });
   }
-  // calculateTotalAmount() {
-  //   const productTotal = this.items.reduce(
-  //     (total, item) => total + item.soLuong * item.gia,
-  //     0
-  //   );
-  //   this.totalAmount = productTotal + 30000; // Adding the fixed shipping cost
-  // }
+  calculateTotalAmount() {
+    this.totalAmount = this.items.reduce(
+      (total, item) => total + item.soLuong * item.gia,
+      0
+    );
+  }
+  
 
   getImageUrl(itemProduct: any): string {
     if (itemProduct && itemProduct.hinhAnh && itemProduct.hinhAnh.length > 0) {

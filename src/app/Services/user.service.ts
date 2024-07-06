@@ -13,7 +13,7 @@ export class UserService {
   constructor(private http:HttpClient) { }
 
 
-  getUserById(id:number):Observable<IUserDetail>{
+  getUserById():Observable<IUserDetail>{
    return this.http.get<IUserDetail>(this.apiUrl + 'Account/detail');
   }
 }

@@ -1,0 +1,132 @@
+<div class="container-lg my-[5rem]">
+  <div class="">
+    <div class="flex flex-col sm:flex-col lg:flex-row lg:gap-[12.5rem]">
+      <h2>TRANG TÀI KHOẢN</h2>
+      <div>
+        <h2 *ngIf="currentSection === 'info'">THÔNG TIN CỦA BẠN</h2>
+        <h2 *ngIf="currentSection === 'password'">ĐỔI MẬT KHẨU</h2>
+        <h2 *ngIf="currentSection === 'orders'">ĐƠN HÀNG CỦA BẠN</h2>
+      </div>
+    </div>
+    <div class="flex flex-col sm:flex-col lg:flex-row">
+      <div class="flex flex-col w-full lg:w-[30%] items-start gap-3">
+        <button
+          class="text-[#B1DBBF]"
+          [ngClass]="{
+            'text-[#B1DBBF]': currentSection === 'info',
+            'text-gray-900': currentSection !== 'info'
+          }"
+          (click)="showSection('info')"
+        >
+          Thông tin tài khoản
+        </button>
+        <button
+          class="text-[#B1DBBF]"
+          [ngClass]="{
+            'text-[#B1DBBF]': currentSection === 'password',
+            'text-gray-900': currentSection !== 'password'
+          }"
+          (click)="showSection('password')"
+        >
+          Đổi mật khẩu
+        </button>
+        <button
+          class="text-[#B1DBBF]"
+          [ngClass]="{
+            'text-[#B1DBBF]': currentSection === 'orders',
+            'text-gray-900': currentSection !== 'orders'
+          }"
+          (click)="showSection('orders')"
+          class="md:mb-[4rem] sm:mb-[4rem]"
+        >
+          Đơn hàng của bạn
+        </button>
+      </div>
+
+      <div class="w-full">
+        <!-- Customer Information Section -->
+        <div class="gap-5" *ngIf="currentSection === 'info'">
+          <div *ngIf="UserDetail$ | async as user">
+            <p><strong>Xin chào, </strong>{{ user.fullName }}</p>
+            <p>Số điện thoại {{ user.phoneNumber || "-" }}</p>
+          </div>
+        </div>
+
+        <!-- Change Password Section -->
+        <div class="gap-5" *ngIf="currentSection === 'password'">
+          <div *ngIf="UserDetail$ | async as user">
+            <p>
+              Để đảm bảo tính bảo mật vui lòng đặt mật khẩu với ít nhất 8 kí tự
+            </p>
+            <p>
+              <input
+                type="password"
+                name="oldPassword"
+                id="oldPassword"
+                placeholder="Old Password"
+                class="p-2 border border-gray-300 rounded"
+              />
+            </p>
+            <p>
+              <input
+                type="password"
+                name="newPassword"
+                id="newPassword"
+                placeholder="New Password"
+                class="p-2 border border-gray-300 rounded"
+              />
+            </p>
+            <p>
+              <input
+                type="password"
+                name="confirmPassword"
+                id="confirmPassword"
+                placeholder="Confirm Password"
+                class="p-2 border border-gray-300 rounded"
+              />
+            </p>
+            <button class="btn">Xác nhận</button>
+          </div>
+        </div>
+
+        <!-- Orders Section -->
+        <div class="gap-5" *ngIf="currentSection === 'orders'">
+          <div *ngIf="UserDetail$ | async as user">
+            <p><strong>Xin chào, </strong>{{ user.fullName }}</p>
+            <div class="overflow-x-auto">
+              <table class="table table-striped min-w-full">
+                <thead>
+                  <tr>
+                    <th scope="col">Order Id</th>
+                    <th scope="col">Ngày mua</th>
+                    <th scope="col">Tổng giá</th>
+                    <th scope="col">trạng thái</th>
+                    <th scope="col">Thanh toán</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let order of paginatedOrders">
+                    <td>{{ order.idHoaDon }}</td>
+                    <td>{{ order.ngayXuat | date : "dd/MM/yyyy" }}</td>
+                    <td>{{ 1200 }}</td>
+                    <td>{{ order.idVanChuyenNavigation.statusName }}</td>
+                    <td>{{ order.idThanhToanNavigation.name }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="d-flex justify-content-between p-2">
+              <ngb-pagination
+                [collectionSize]="collectionSize"
+                [(page)]="page"
+                [pageSize]="pageSize"
+                (pageChange)="refreshOrders()"
+              >
+              </ngb-pagination>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

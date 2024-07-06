@@ -25,17 +25,7 @@ export class CartService {
     this.calculateTotalQuantity();
   }
 
-  // đảm bảo rằng localStorage chỉ được sử dụng khi chạy trong môi trường trình duyệt
-  private isLocalStorageAvailable(): boolean {
-    try {
-      const test = '__localStorageTest__';
-      localStorage.setItem(test, test);
-      localStorage.removeItem(test);
-      return true;
-    } catch (e) {
-      return false;
-    }
-  }
+  
 
   getItemCart() {
     return this.CartItemSubject.asObservable();
@@ -96,6 +86,18 @@ export class CartService {
     this.totalQuantitySubject.next(totalQuantity);
   }
 
+  // đảm bảo rằng localStorage chỉ được sử dụng khi chạy trong môi trường trình duyệt
+  private isLocalStorageAvailable(): boolean {
+    try {
+      const test = '__localStorageTest__';
+      localStorage.setItem(test, test);
+      localStorage.removeItem(test);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+  
   saveCartToLocalStorage() {
     if (this.isLocalStorageAvailable()) {
       localStorage.setItem('cartItems', JSON.stringify(this.cartItems));

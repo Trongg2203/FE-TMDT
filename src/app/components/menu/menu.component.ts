@@ -29,7 +29,7 @@ export class MenuComponent {
   private authService = inject(AuthService);
   private router = inject(Router);
   closeResult = '';
-
+  idUser: string | null = null;
   ngOnInit() {
     this.authService.checkAuthStatus();
 
@@ -37,6 +37,7 @@ export class MenuComponent {
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe(() => {
         this.authService.checkAuthStatus();
+        this.idUser = this.authService.getUserDetail()?.id || null;
       });
   }
 

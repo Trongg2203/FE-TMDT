@@ -6,6 +6,7 @@ import { authGuard } from './Guards/auth.guard';
 import { CartComponent } from './components/cart/cart.component';
 import { CateProductComponent } from './cate-product/cate-product.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
+import { AccountComponent } from './components/account/account.component';
 
 export const routes: Routes = [
     {path:'',component: HomeComponent},
@@ -14,5 +15,6 @@ export const routes: Routes = [
     {path:'cart',component:CartComponent},
     {path:'Cate-product/:idLoaiHangHoa', component:CateProductComponent},
     {path:'Checkout',component:CheckoutComponent},
+    {path:'Account/:idUser', component:AccountComponent},
 
 ];

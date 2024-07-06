@@ -1,0 +1,11 @@
+// bg-[#48cab2] py-2 px-6 text-white hover:text-[#48cab2] hover:bg-slate-200"
+.btn{
+    background: #48cab2;
+    color:#ffff;
+    padding: 5px 20px;
+    border: 1px solid #48cab2;
+    &:hover {
+        background: #ffff;
+        color: #48cab2;
+    }
+}

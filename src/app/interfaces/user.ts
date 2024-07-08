@@ -8,3 +8,9 @@ export interface IUserDetail {
   phoneNumberConfirmed: true;
   accessFailesCount: 0;
 }
+
+export interface IAdminRegisterAccount{
+  emailAddress: string;
+  fullName:string;
+  role:string;
+}

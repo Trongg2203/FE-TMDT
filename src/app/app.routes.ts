@@ -7,7 +7,7 @@ import { CartComponent } from './components/cart/cart.component';
 import { CateProductComponent } from './cate-product/cate-product.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { AccountComponent } from './components/account/account.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { roleGuard } from './Guards/role.guard';
 
 export const routes: Routes = [

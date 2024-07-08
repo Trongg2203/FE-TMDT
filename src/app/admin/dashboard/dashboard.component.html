@@ -1,0 +1,33 @@
+<div class="container-xl my-[3rem]">
+  <h2>Admin - DashBoard</h2>
+  <!-- Left -->
+  <!-- <div class="flex flex-col w-full lg:w-[30%] items-start gap-3">
+    <button
+      class="text-[#B1DBBF]"
+      [ngClass]="{
+        'text-[#B1DBBF]': currentSection === 'users',
+        'text-gray-900': currentSection !== 'users'
+      }"
+      (click)="showSection('users')"
+    >
+      Users
+    </button>
+    <button
+      class="text-[#B1DBBF]"
+      [ngClass]="{
+        'text-[#B1DBBF]': currentSection === 'product',
+        'text-gray-900': currentSection !== 'product'
+      }"
+      (click)="showSection('product')"
+    >
+      Product
+    </button>
+  </div> -->
+
+  <mat-tab-group>
+    <mat-tab label="User"><app-users></app-users></mat-tab>
+    <mat-tab label="Product"> 2 </mat-tab>
+    <mat-tab label="Third"> Content 3 </mat-tab>
+    <mat-tab label="Fourth"> Content 3 </mat-tab>
+  </mat-tab-group>
+</div>

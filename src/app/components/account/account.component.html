@@ -9,7 +9,9 @@
       </div>
     </div>
     <div class="flex flex-col sm:flex-col lg:flex-row">
+      <!-- left -->
       <div class="flex flex-col w-full lg:w-[30%] items-start gap-3">
+        <button [routerLink]="['/dashboard']" *ngIf="(UserDetail$ | async)?.role?.includes('Admin')">Admin - Dashboard</button>
         <button
           class="text-[#B1DBBF]"
           [ngClass]="{
@@ -30,6 +32,7 @@
         >
           Đổi mật khẩu
         </button>
+        
         <button
           class="text-[#B1DBBF]"
           [ngClass]="{
@@ -42,7 +45,7 @@
           Đơn hàng của bạn
         </button>
       </div>
-
+        <!-- Right -->
       <div class="w-full">
         <!-- Customer Information Section -->
         <div class="gap-5" *ngIf="currentSection === 'info'">

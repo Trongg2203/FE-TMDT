@@ -31,6 +31,7 @@ export class CateProductComponent implements OnInit {
     this.activateRoute.params.subscribe((param) => {
       this.id = param['idLoaiHangHoa'];
       this.getProductByIdCate(this.id);
+      // console.log('id', this.id);
     });
   }
 

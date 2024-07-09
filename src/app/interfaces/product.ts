@@ -1,3 +1,5 @@
+import exp from "constants";
+
 export interface IImage {
     idHinhAnh: number;
     hinhAnh1:string;
@@ -25,4 +27,22 @@ export interface IProducts {
    HinhAnhs: IImage[];
    ratings:IRating[];
    products:IProduct[];
+}
+
+export interface IAddLoaiHangHoa{
+    idLoaiHangHoa:number;
+    tenLoai:string;
+}
+
+export interface IAddHangHoa{
+    idHangHoa?:string;
+    MauSac:string;
+    SoLuong:number;
+    Size:string;
+    HinhAnh?:File;
+    TenHoangHoa:string;
+    Gia:number;
+    MoTa:string;
+    idLoaiHangHoa:number;
+    tenLoai:string;
 }

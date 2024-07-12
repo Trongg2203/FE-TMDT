@@ -21,97 +21,155 @@
 <!-- add hanghoa -->
 <div class="mx-3">
   <h2>Thêm Hàng Hóa</h2>
-  <form
-    [formGroup]="hangHoaForm"
-    (ngSubmit)="handleOnSubmitHangHoa()"
-    class="grid grid-cols-1"
-  >
-  <p-dropdown
-      formControlName="idLoaiHangHoa"
-      [options]="loaiHangHoas"
-      optionLabel="tenLoai"
-      optionValue="idLoaiHangHoa"
-      placeholder="Chọn Loại hàng hóa"
-      class="m-9"
-    />
-    <div class="flex flex-col">
-      <label for="username" class="mx-2">Hàng hóa</label>
-      <input
-        class="border border-sky-500 w-[30%] mb-3 p-2"
-        pInputText
-        id="username"
-        aria-describedby="username-help"
-        formControlName="TenHangHoa"
+  <div class="">
+    <!-- right -->
+    <form
+      class="w-full"
+      [formGroup]="hangHoaForm"
+      (ngSubmit)="handleOnSubmitHangHoa()"
+    >
+      <p-dropdown
+        formControlName="idLoaiHangHoa"
+        [options]="loaiHangHoas"
+        optionLabel="tenLoai"
+        optionValue="idLoaiHangHoa"
+        placeholder="Chọn Loại hàng hóa"
+        class="my-9"
       />
-    </div>
-    <div class="flex flex-col">
-      <label for="username" class="mx-2">Mô tả sản phẩm</label>
-      <textarea
-        class="border border-sky-500 w-[30%] mb-3"
-        rows="5"
-        cols="30"
-        pInputTextarea
-        formControlName="Mota"
-      >
-      </textarea>
-    </div>
+      <div class="flex flex-col">
+        <label for="username" class="mx-2">Hàng hóa</label>
+        <input
+          class="border border-sky-500 w-[30%] mb-3 p-2"
+          pInputText
+          id="username"
+          aria-describedby="username-help"
+          formControlName="TenHangHoa"
+        />
+      </div>
+      <div class="flex flex-col">
+        <label for="username" class="mx-2">Mô tả sản phẩm</label>
+        <textarea
+          class="border border-sky-500 w-[30%] mb-3"
+          rows="5"
+          cols="30"
+          pInputTextarea
+          formControlName="Mota"
+        >
+        </textarea>
+      </div>
 
-    <div class="flex flex-col">
-      <label for="username" class="mx-2">Giá</label>
-      <input
-        class="border border-sky-500 w-[30%] mb-3 p-2"
-        pInputText
-        id="username"
-        aria-describedby="username-help"
-        formControlName="Gia"
-      />
-    </div>
+      <div class="flex flex-col">
+        <label for="username" class="mx-2">Giá</label>
+        <input
+          class="border border-sky-500 w-[30%] mb-3 p-2"
+          pInputText
+          id="username"
+          aria-describedby="username-help"
+          formControlName="Gia"
+        />
+      </div>
 
-    <div class="flex flex-col">
-      <label for="username" class="mx-2">Size</label>
-      <input
-        class="border border-sky-500 w-[30%] mb-3 p-2"
-        pInputText
-        id="username"
-        aria-describedby="username-help"
-        formControlName="Size"
-      />
+      <div class="flex flex-col">
+        <label for="username" class="mx-2">Size</label>
+        <input
+          class="border border-sky-500 w-[30%] mb-3 p-2"
+          pInputText
+          id="username"
+          aria-describedby="username-help"
+          formControlName="Size"
+        />
+      </div>
+      <div class="flex flex-col">
+        <label for="username" class="mx-2">Số Lượng</label>
+        <input
+          class="border border-sky-500 w-[30%] mb-3 p-2"
+          pInputText
+          id="username"
+          aria-describedby="username-help"
+          formControlName="SoLuong"
+        />
+      </div>
+      <div class="flex flex-col">
+        <label for="username" class="mx-2">Màu</label>
+        <input
+          class="border border-sky-500 w-[30%] mb-3 p-2"
+          pInputText
+          id="username"
+          aria-describedby="username-help"
+          formControlName="MauSac"
+        />
+      </div>
+      <div class="flex flex-col">
+        <label for="hinhAnh" class="mx-2">Hình ảnh</label>
+        <input
+          type="file"
+          class="border border-sky-500 w-[30%] mb-3 p-2"
+          (change)="onFileSelected($event)"
+          id="hinhAnh"
+          aria-describedby="hinhAnh-help"
+        />
+      </div>
+
+      <!-- [options]="" 
+       [(ngModel)]=""  -->
+      <div class="my-2">
+        <button type="submit" class="btn btn-primary">Thêm Hàng Hóa</button>
+      </div>
+    </form>
+    <!-- left -->
+    <div class="w-full">
+      <h2>Danh sách sản phẩm</h2>
+      <div>
+        <div class="overflow-x-auto">
+          <table class="table table-striped min-w-full">
+            <thead>
+              <tr>
+                <th scope="col">STT</th>
+                <th scope="col">Id</th>
+                <th scope="col">Loại hàng hóa</th>
+                <th scope="col">Tên sản phẩm</th>
+                <th scope="col">Mô tả</th>
+                <th scope="col">Giá</th>
+                <th scope="col">Size</th>
+                <th scope="col">Màu sắc</th>
+                <th scope="col">Chức năng</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let product of paginatedAllProducts; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td>{{ product.idHangHoa }}</td>
+                <td>{{ product.idLoaiHangHoaNavigation?.tenLoai }}</td>
+                <td class="product-name">{{ product.tenHangHoa }}</td>
+                <td>{{ product.mota }}</td>
+                <td>{{ product.gia | number : "1.0-3" }}VNĐ</td>
+                <td>{{ product.size }}</td>
+                <td>{{ product.mauSac }}</td>
+                <td class="flex">
+                  <!-- edit -->
+                  <app-edit-product [productId]="product.idHangHoa"></app-edit-product>
+                  <!-- remove -->
+                  <p-button
+                    icon="pi pi-trash"
+                    (onClick)="handleRemoveHangHoa(product.idHangHoa)"
+                    styleClass="p-button-danger"
+                    class="text-black hover:text-[#48CAB2]"
+                  ></p-button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="d-flex justify-content-between p-2">
+          <ngb-pagination
+            [collectionSize]="collectionSize"
+            [(page)]="page"
+            [pageSize]="pageSize"
+            (pageChange)="refreshProduct()"
+          >
+          </ngb-pagination>
+        </div>
+      </div>
     </div>
-    <div class="flex flex-col">
-      <label for="username" class="mx-2">Số Lượng</label>
-      <input
-        class="border border-sky-500 w-[30%] mb-3 p-2"
-        pInputText
-        id="username"
-        aria-describedby="username-help"
-        formControlName="SoLuong"
-      />
-    </div>
-    <div class="flex flex-col">
-      <label for="username" class="mx-2">Màu</label>
-      <input
-        class="border border-sky-500 w-[30%] mb-3 p-2"
-        pInputText
-        id="username"
-        aria-describedby="username-help"
-        formControlName="MauSac"
-      />
-    </div>
-    <div class="flex flex-col">
-      <label for="hinhAnh" class="mx-2">Hình ảnh</label>
-      <input
-        type="file"
-        class="border border-sky-500 w-[30%] mb-3 p-2"
-        (change)="onFileSelected($event)"
-        id="hinhAnh"
-        aria-describedby="hinhAnh-help"
-      />
-    </div>
-    
-    <!-- [options]="" 
-        [(ngModel)]=""  -->
-    <div class="my-2">
-      <button type="submit" class="btn btn-primary">Thêm Hàng Hóa</button>
-    </div>
-  </form>
+  </div>
 </div>

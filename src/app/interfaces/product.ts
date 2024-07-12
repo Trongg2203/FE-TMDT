@@ -22,6 +22,8 @@ export interface IRating {
     gia:number;
     moTa:string;
     hinhAnh:string;
+    idLoaiHangHoa:number;
+    tenLoai:string;
  }
 export interface IProducts {
    HinhAnhs: IImage[];

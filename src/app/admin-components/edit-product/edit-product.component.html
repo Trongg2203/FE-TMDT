@@ -1,0 +1,96 @@
+<p-button
+  icon="pi pi-pencil"
+  class="text-black hover:text-[#48CAB2]"
+  styleClass="p-button-danger"
+  (onClick)="showDialog()"
+></p-button>
+
+<p-dialog
+  header="Chỉnh sửa thông tin hàng hóa."
+  [modal]="true"
+  [(visible)]="visible"
+  [style]="{ width: '35rem' }"
+>
+  <form [formGroup]="editForm" (ngSubmit)="handleEditProduct()">
+    <p-dropdown
+      formControlName="idLoaiHangHoa"
+      [options]="loaiHangHoas"
+      optionLabel="tenLoai"
+      optionValue="idLoaiHangHoa"
+      placeholder="Chọn Loại hàng hóa"
+      class="my-9"
+    ></p-dropdown>
+    <div class="flex flex-col">
+      <label for="TenHangHoa" class="mx-2">Hàng hóa</label>
+      <input
+        class="border border-sky-500 w-full mb-3 p-2"
+        pInputText
+        id="TenHangHoa"
+        formControlName="TenHangHoa"
+      />
+    </div>
+    <div class="flex flex-col">
+      <label for="MoTa" class="mx-2">Mô tả sản phẩm</label>
+      <textarea
+        class="border border-sky-500 w-full mb-3"
+        rows="5"
+        cols="30"
+        pInputTextarea
+        formControlName="moTa"
+      ></textarea>
+    </div>
+    <div class="flex flex-col">
+      <label for="Gia" class="mx-2">Giá</label>
+      <input
+        class="border border-sky-500 w-full mb-3 p-2"
+        pInputText
+        id="Gia"
+        formControlName="gia"
+      />
+    </div>
+    <div class="flex flex-col">
+      <label for="Size" class="mx-2">Size</label>
+      <input
+        class="border border-sky-500 w-full mb-3 p-2"
+        pInputText
+        id="Size"
+        formControlName="size"
+      />
+    </div>
+    <div class="flex flex-col">
+      <label for="soLuong" class="mx-2">Số Lượng</label>
+      <input
+        class="border border-sky-500 w-full mb-3 p-2"
+        pInputText
+        id="SoLuong"
+        formControlName="soLuong"
+      />
+    </div>
+    <div class="flex flex-col">
+      <label for="MauSac" class="mx-2">Màu</label>
+      <input
+        class="border border-sky-500 w-full mb-3 p-2"
+        pInputText
+        id="MauSac"
+        formControlName="mauSac"
+      />
+    </div>
+    <div class="flex flex-col">
+      <label for="HinhAnh" class="mx-2">Hình ảnh</label>
+      <input
+        type="file"
+        class="border border-sky-500 w-full mb-3 p-2"
+        id="HinhAnh"
+        (change)="handleFileInput($event)"
+      />
+    </div>
+    <div class="my-2 flex justify-content-end gap-2">
+      <p-button
+        label="Cancel"
+        severity="secondary"
+        (onClick)="visible = false"
+      />
+      <p-button label="Save" type="submit" />
+    </div>
+  </form>
+</p-dialog>

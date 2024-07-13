@@ -21,7 +21,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { MatIconModule } from '@angular/material/icon';
-import { EditProductComponent } from "../../admin-components/edit-product/edit-product.component";
+import { EditProductComponent } from "../admin-components/edit-product/edit-product.component";
 
 @Component({
   selector: 'app-create-product',

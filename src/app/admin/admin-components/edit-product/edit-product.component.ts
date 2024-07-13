@@ -3,7 +3,7 @@ import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { MatIconModule } from '@angular/material/icon';
-import { ListProductsService } from '../../Services/list-products.service';
+import { ListProductsService } from '../../../Services/list-products.service';
 import {
   FormBuilder,
   FormGroup,
@@ -11,8 +11,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { IItemMenu } from '../../interfaces/itemMenu';
-import { ItemMenuService } from '../../Services/item-menu.service';
+import { IItemMenu } from '../../../interfaces/itemMenu';
+import { ItemMenuService } from '../../../Services/item-menu.service';
 import { DropdownModule } from 'primeng/dropdown';
 
 @Component({
